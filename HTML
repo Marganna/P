@@ -1,40 +1,40 @@
- SOLOLEARN
 
-HTML
 
-Unlike a scripting or programming language that uses scripts to perform functions, a markup language uses tags to identify content. 
+html
+
+unlike a scripting or programming language that uses scripts to perform functions, a markup language uses tags to identify content. 
 <p>
-Paragraph
+paragraph
 </p>
 
-The HTML document has opening and closing HTML tags.
-These tags, like the bread in a sandwich, surround everything else:
+the html document has opening and closing html tags.
+these tags, like the bread in a sandwich, surround everything else:
 
 <html>
 …..
 <html/>
 
 
-The head of an HTML file contains all of the non-visual elements that help make the page work.
+the head of an html file contains all of the non-visual elements that help make the page work.
 
 <html>
 <head>.....</head>
 </html>
 
-The body tag follows the head tag.
+the body tag follows the head tag.
 
-HTML files are text files, so you can use any text editor 
+html files are text files, so you can use any text editor 
 
-To place a title on the tab describing the web page, add a <title> element to your head section:
+to place a title on the tab describing the web page, add a <title> element to your head section:
 
-In HTML, there is a list of elements that specify text style.
+in html, there is a list of elements that specify text style.
 
 <html>
    <head>
       <title>first page</title>
    </head>
    <body>
-      <p>This is regular text </p>
+      <p>this is regular text </p>
       <p><b> bold text </b></p>
       <p><big> big text </big></p>
       <p><i> italic text </i></p>
@@ -47,41 +47,94 @@ In HTML, there is a list of elements that specify text style.
    </body>
 </html> 
 
-HTML includes six levels of headings, which are ranked according to importance.
-These are <h1>, <h2>, <h3>, <h4>, <h5>, and <h6>.
+html includes six levels of headings, which are ranked according to importance.
+these are <h1>, <h2>, <h3>, <h4>, <h5>, and <h6>.
 
-It is not recommended that you use headings just to make the text big or bold, because search engines use headings to
+it is not recommended that you use headings just to make the text big or bold, because search engines use headings to
 index the web page structure and content.
 
 
-To create a horizontal line, use the <hr /> tag. 
+to create a horizontal line, use the <hr /> tag. 
 
-The browser does not display comments, but they help document the HTML and add descriptions, reminders, and other notes.
-<!-- Your comment goes here --> (no ! mark in the end)
+the browser does not display comments, but they help document the html and add descriptions, reminders, and other notes.
+<!-- your comment goes here --> (no ! mark in the end)
 
-HTML documents are made up of HTML elements.
+html documents are made up of html elements.
 
-An HTML element is written using a start tag and an end tag, and with the content in between.
-HTML documents consist of nested HTML elements
-Some HTML elements (like the <br /> tag) do not have end tags.
+an html element is written using a start tag and an end tag, and with the content in between.
+html documents consist of nested html elements
+some html elements (like the <br /> tag) do not have end tags.
 it’s a separate, single element.
 
-Attributes provide additional information about an element or a tag, while also modifying them. 
-Attributes are always specified in the start tag, and they appear in name="value" pairs.
+attributes provide additional information about an element or a tag, while also modifying them. 
+attributes are always specified in the start tag, and they appear in name="value" pairs.
 <p align="center"> 
-   This text is aligned to center
+   this text is aligned to center
 </p>
 
 
-Attribute Measurements 
+attribute measurements 
 <hr width="50px" />
 
-The Align Attribute 
-  <hr width="10%" align="right" /> This is also a text.
+the align attribute 
+  <hr width="10%" align="right" /> this is also a text.
 
-The <img> Tag
-Inserts image and does not contain closing tag 
-for URL use src attribute 
-Syntax
-<img src="image.jpg" />
+the <img> tag
+inserts image and does not contain closing tag 
+for url use src attribute 
+syntax
+<img src="image.jpg" /
 
+Links
+
+To add a link inside the webpaege it requres <a> tag and the href attribute to define the lnk's
+ destination address:  <ahref="url"></a>
+
+_blank is used to specify where to open the linked document:
+<ahref "url"target="_blank"> smth </a>
+
+Lists
+Ordered list => to use <ol> tag and <li> to define the list item 
+<html>
+<head>
+<title>smth</title>
+</head>
+<body>
+<ol>
+<li>C_1</li>
+<li>C_2</li>
+<li>etc</li>
+</ol>
+</body>
+</html>
+Unordered lists => to use <ul> tag which will mark by bullets instead of numbers.
+
+Table
+<table> tag creates a table which are divided into tabel rows using <tr> tag,
+the rows are divided into the columns with the <td> tag.
+<table>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+<table border ="5">
+<tr> 
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td><br/></td>
+<td colspan="4"><br/></td>
+</tr>
+</table>
+
+rowspan attribute makes more than one row 
+
+<table align="center">
+<td bgcolor="red">text</td> [an attribute to change the colors]
+
+Headers 
+
+<th> is the headers 
