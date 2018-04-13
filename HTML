@@ -137,4 +137,77 @@ rowspan attribute makes more than one row
 
 Headers 
 
-<th> is the headers 
+<th> is the headers
+
+In HTML the elements are defined as block level[which start from a new line]
+ or inline elements [displayed without  line braeks and cannot contain block
+elements.
+ 
+<div> defines the block level in the document 
+<span> element defines an inline section in a document, used to style the parts
+ of a document 
+
+Method
+<form action ="url"method="GET" > [data is visible in the page address]
+<form action ="url"method="POST"> [data is secured s.t. passwords, submitted
+data is not visible]
+Depending on the function to perform, the <input> variations change.
+<form>
+	<input type="text"name "username"/><br/>
+	<input type="password"name="password"/>
+</form>
+<form> 
+	<input type="radio"name="gender"value="female"><br/>
+	<input type="radio"name="gender"value="male"><br/>
+</form>
+[to chenge the type => use checckbox instead of radio]
+
+<input type="submit" value ="Submit"/> [submit button]
+The data processed on a server using a language s.t. PHP
+
+Contact Boxes
+
+<input name="email"type="email"/><br/>
+
+"textarea" element supprots mutiple lines of input.
+
+Colors
+
+Are represented as hexidecimal values which are used using "#" symbol.
+3 circles [RGB] overlap forms different colors.
+#FFFFFF == white
+#000000 == balck 
+#777777 == gray
+#FF0000 == red
+#00FF00 == green
+#0000FF == blue
+
+<html>
+<head>
+<title>a page</title>
+</head>
+<body bgcolor="FFF00c">
+ <h1> 
+<font color="000000"> Haylur</font>
+</h1>
+</body>
+</html>
+
+Frame
+
+A page divides frames which creates a specfic window with the tag such that
+<frameset>. Each frame has attributes s.t. scrolling, border, etc.
+<frameset> is not used in HTML5
+<frame cols="100%*"></frameset>
+<frameset rows="100%*"></frameset> 
+<frame noresize="no resize">
+<noframe> element is used for the webpages wich does not support to 
+frames to view the page.
+The content inside the frame is defined with "src" attribute.
+
+<frameset cols="20%60%20%">
+<frame src="the first.html"/>
+</frameset>
+
+
+ 
