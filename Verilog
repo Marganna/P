@@ -1,0 +1,22 @@
+Verilog is a Hardware Describtion Language. An HDL is used to describe a digital system 
+[microprocessor, memory, flip-flop, network switch...] => any hardware [digita] at any level
+could be described by using HDL. Verilog describes digital desigh at behavior level Register
+Transfer Level [RTL],Gate level and a switch level.Verilog allows designers to express their
+design with behavioral construct, implementing the deasign's later stage into final.
+[It may not take more then one week if you know at least 1 programming language].
+Verilog as any HDL allows to describe or Bottom-up[each design is performed gate-level.This bottom-up
+allows to a new way to hierachical and strutural design methods] or Top-down methodology[allows early 
+testing, choise of different technologies but are complicated].
+
+Levels of abstruction
+
+1. Behavioral Level
+2.Register transfer
+3. Gate level 
+
+3 
+Assign [w2w]
+Blocking [== ; elemento cascade nerov ancnel vortegh elementnery the scheme decides== self timed ]
+Non-blocking [<= ; clk tree the event occurs at the same time in dif peaces- the event decides]
+Akntartoren => sxal ardyunq 
+
