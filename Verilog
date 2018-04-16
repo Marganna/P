@@ -6,13 +6,74 @@ design with behavioral construct, implementing the deasign's later stage into fi
 [It may not take more then one week if you know at least 1 programming language].
 Verilog as any HDL allows to describe or Bottom-up[each design is performed gate-level.This bottom-up
 allows to a new way to hierachical and strutural design methods] or Top-down methodology[allows early 
-testing, choise of different technologies but are complicated].
+testing, choise of different technologies but are complicated thus sometimes they mix both methods].
+
 
 Levels of abstruction
 
-1. Behavioral Level
-2.Register transfer
-3. Gate level 
+1. Behavioral Level [algorithms each of them itself is sequential which means it contains a set of 
+instructions which are executed one after another. functions, tasks and always blocks are main 
+elements, no regard to structural design]
+2.Register transfer [characteristics of a circuit by operations and the transfer of data between 
+the registers. Any synthesable code is called RTL code]
+3. Gate level [code is generated using synthesis tools and thisnetlist is used for simulationa
+and backend. In this level the systems are desribed by logical gates and by their timings.
+This level does not fit to any level of logic design.All signals are discrete==only have defined one 
+value like 0,1,x,z]
+
+Speccification
+
+Defining the important parameters of the system design. Microsoft Word, or GNU Abiword are a good 
+options for entering the speciffications.
+
+Highh Level Design
+
+A stage where varius blocks in the design and comunications between them are defined. High level design 
+means spliting the system[design] into blocks by teir functionalities The blocs of registers , ALU,
+instruction Decode, memory interface...Entering high level design is able to be done by Microsoft Word, or KWriter or
+
+Micro Design [Low Level Design]
+
+Phase which designer describes how each block is implemented. Containes details of the State machines, counters, Mux,
+decoders, internal registers. StateCAD and word are used for state machiene entry. 
+
+RTL coding
+Using synthesizable constructs of the language Micro Design is converted into Verilog/VHDL code [in RTL] 
+Using vim editor [ TEXT, Nedit, Emacs...]
+
+1 -> module smth (
+2 -> a, //first input
+3 -> b, //second
+4 -> ci, //carry input
+5 -> sum, // output the sum
+6 -> co, // carry output
+7 -> ); // Do not forget the semicol.s ;)
+8 -> //input decleration
+9 -> input a;
+10 ->input b;
+11 -> input i;
+12 -> // output deceleration
+13 -> ouatput sum;
+14 -> output co;
+15 -> //Port data type
+16 -> wire a;
+17 -> wire b;
+18 -> wire ci;
+19 -> wire sum;
+20 -> wire co;
+21 -> // Start the code;
+22 -> asign {co,sum} = a+b+ci;
+23 -> endmodule // end of module smth
+
+Simulation
+
+Is the verification process of functions for any level of abstruction.
+To see all blocks functionality correction we create a testbench wich 
+creates clock [generates].W	
+
+
+
+
 
 3 
 Assign [w2w]
