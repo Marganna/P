@@ -69,15 +69,30 @@ Simulation
 
 Is the verification process of functions for any level of abstruction.
 To see all blocks functionality correction we create a testbench wich 
-creates clock [generates].W	
+creates clock [generates].We use waveform output viewer to see if the DUT [Device Under Test] is functionally correct.
+Timing simulation is done after synthesis or after P&R [place & route].Here we include gate delays & wire delays to see
+DUT works at rated clock speed. Also called as SDF simulation or gate level simulation.
 
+Synthesis
 
+Is a process in which synthesis tool [like design compiler or synplify] takes the RTL in Verilog or VHDL, target technology 
+and constrains as inputs and maps the RTL to target technology primitives.Syntesis tools after mapping the RTL to gates, also
+do the minimal amount of timing analyse to see if the mapping meets the required timing requirements. [they know only gate 
+delays not the wire ones. ater netlist
 
+Formal verification [checking if the RTL to gate is correct]
+scan insertion [insert the scan chain in case of ASIC]
+
+and then backend is done [place & routing]
+
+Place & Route
+ 
 
 
 3 
 Assign [w2w]
 Blocking [== ; elemento cascade nerov ancnel vortegh elementnery the scheme decides== self timed ]
+
 Non-blocking [<= ; clk tree the event occurs at the same time in dif peaces- the event decides]
 Akntartoren => sxal ardyunq 
 
