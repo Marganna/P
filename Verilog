@@ -86,8 +86,24 @@ scan insertion [insert the scan chain in case of ASIC]
 and then backend is done [place & routing]
 
 Place & Route
- 
 
+Gatelevel netlist from the synthesis tool is taken and imported into P&R tool in verilog netlist format. All the gates and
+flip-flops are placed, clock tree synthesis and reset is routed. Afteer which , each block is routed. The P&R tool give 
+GDS output file which is used by foundary for fabrication the ASIC. P&R tools are used to output the SDF files,into static
+analysis tool like Prime Time to do timing analysis.
+
+Post Silicon Validation
+
+Before the chiip [chip] is released into market, it needs to put in real enviroment and tested. Since the speed of 
+simulation with RTL is very slow [number of clocks per second]] thus exists possibility to find a bug in post silicon
+validation.
+
+1 -> module The_First_Program;
+2 -> initial begin  
+3 -> $display ("smth");
+4 -> #10$finish;
+5 -> end
+6 -> endmodule 
 
 3 
 Assign [w2w]
