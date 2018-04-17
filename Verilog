@@ -103,7 +103,63 @@ validation.
 3 -> $display ("smth");
 4 -> #10$finish;
 5 -> end
-6 -> endmodule 
+6 -> endmodule
+
+Any Program in Verilog stats with reserved word module,also  able having compiler pre-processor statements
+[include,define statements before module decleration] 
+The initial block gets executed only once after simulation starts at time=0 , contains 2 statements, which are closed 
+within begin & end. If there are multiple lines with a block, begin & end are needed.
+
+Counter
+
+Number of flip-flops connected in cascade.
+Asynchronous [ripple] is a single d-type flip-flop with J input. Incr once for every clock sycle and takes 2 clock
+cycles to overflow, so every cycle will alternate between transition from 0 -1 & from 1-0. Creates new clock with a
+50% duty cycle [the fraction of one period in wich a signal or system is active and expressed as a percentage or a 
+ratio. A period is the time it takes for a signal to complete a cycle of on-&-off.As formula => D=PW/T*100%.
+Where PW == pulse width[pulse active time], T == total time period of the signal.So e.g. 75% DC could be fraction
+of a second , signal is on 75% of the time [depending on the length of the period] but 35% is off of the time. at
+exactly half the frequency of the input clock. DC is also used to describe the active time of an active signal
+s.t. as a power switch in a switching power supply, action potentioals in a living systems s.t. neuron.] 
+
+module a_counter(
+clock, //Clock input 
+reset, // active high sync. reset input
+enable, // active high enable signal for counter
+counter_out // 4 bit output of the counter
+); // end port ls
+//input ports
+input clock;
+input reset;
+input enable;
+// output ports
+output [3:0] counter_out;
+//input ports data type
+// all inputs should be wires
+wire clock;
+wire reset ;
+wire enable;
+//output ports
+// could be storage element [reg] or a wire
+reg [3:0] counter_out;
+//begin code
+//counter is positive edge => the block with positive edge of clock.
+always @ (posedge clockk)
+begin : Counter // block name
+// check if the clock is active at every rising edge.If actibve=>load.
+if (reset==1'b1) begin
+	counter_out <=# 4'b0000;
+ end
+//if enable active=> write incr counter
+ else if (enable ==1'b1) begin
+	counter_out<= #1 counter_out+1;
+ end
+end //block counter
+
+endmodule
+
+COUNTER_TEST_BENCH
+
 
 3 
 Assign [w2w]
