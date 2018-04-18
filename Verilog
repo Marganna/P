@@ -116,11 +116,12 @@ Number of flip-flops connected in cascade.
 Asynchronous [ripple] is a single d-type flip-flop with J input. Incr once for every clock sycle and takes 2 clock
 cycles to overflow, so every cycle will alternate between transition from 0 -1 & from 1-0. Creates new clock with a
 50% duty cycle [the fraction of one period in wich a signal or system is active and expressed as a percentage or a 
-ratio. A period is the time it takes for a signal to complete a cycle of on-&-off.As formula => D=PW/T*100%.
-Where PW == pulse width[pulse active time], T == total time period of the signal.So e.g. 75% DC could be fraction
-of a second , signal is on 75% of the time [depending on the length of the period] but 35% is off of the time. at
-exactly half the frequency of the input clock. DC is also used to describe the active time of an active signal
-s.t. as a power switch in a switching power supply, action potentioals in a living systems s.t. neuron.] 
+ratio. A period is the time it takes for a signal to complete a cycle [A turn == a unit of a plane angle==2pi rad;360 
+or 400 gradians, turn also refers to cycle==cyc, revolution==rev,complete rotation==rot,or full cycle ] of on-&-off.
+As formula => D=PW/T*100%. Where PW == pulse width[pulse active time], T == total time period of the signal.So e.g. 
+75% DC could be fraction of a second , signal is on 75% of the time [depending on the length of the period] but 35% 
+is off of the time. at exactly half the frequency of the input clock. DC is also used to describe the active time of 
+an active signal s.t. as a power switch in a switching power supply, action potentioals in a living systems s.t. neuron.] 
 
 module a_counter(
 clock, //Clock input 
@@ -160,11 +161,140 @@ endmodule
 
 COUNTER_TEST_BENCH
 
+Any circuit need to be teseted. For the counter logic clock,reset needed to be provided. As the counter is out of reset,
+we toggle the enable input to counter, and check with waveform to see if counter is counting correctly. The same is done in 
+Verilog.
+Clock Generator
+Reset Control
+Enable Control
+Compare Logic
+
+include "a_counter.v"
+module a_counter_tb();
+//declare inputs as regs and outputs as wires
+reg clock, reset, enable;
+wire [3:0]counter_out;
+//initialize all variables
+initial begin
+	$display("time\t clk reset enable counter");
+	$monitor ("%g\t%b%b%b%b",
+	$time,clock,reset,enable,counter_out);
+	clock=1;  //initial valur of clock
+	reset=0; //initial value of reset
+	enable=0;// initial value of enable
+	#7 reset=1; //assert the reset
+	#12 reset=0; //de-assert enable
+	#7 enable=1; //assert enable
+	#50 enable=0; //de-asert enable
+	#20 $finish; //Terminate simulation
+end
+
+//clk generator
+
+always begin
+	#8 clock=~clock; //Toggle clock every 5 ticks
+end
+
+//counter DUT to test bench
+a_counter n_counter (
+clock;
+reset;
+enable;
+counter_out
+);
+
+endmodule
+
+Syntax_&_Semantics
+
+Case-sensitive language.
+All keywords are in lowercase.
+
+White Space
+Could contain the characters for blanks, tabs, newlines, form feeds. There are ignored except when
+they serve to separate other tokens. Blanks and tabs are significant in strings.
+
+White space characters are :
+Blank spaces
+Tabs
+Carriage returns
+New-line
+Form-feeds
+
+Example of a bad code
+
+module asdf(a,b,c,sum,co);
+input a,b,ci;output sum;co;
+wire a,b,ci,sum,co;endmodule
+
+Comments
+
+Single line comments => //
+Multiline comments => /*end with token*/
+
+Identifires
+
+Are names used to give an object s.t. a register, function, module, which is able to be referenced from other place in a 
+description.
+Must begin with alphabetic character or underscore
+May contain alphabetic characters, numeric characters, untderscore and dolar sign.
+Can be up to 1024 characters long
+
+Any character can be used in an identifier by escaping the identifier which provides a means including any printable
+ASCII characters in an identifier 
+
+Escaped begin with balckslash (\) 
+Escaped identifier is terminated by white space [chars like comma, parentheses...beccome part of it until they seperated
+with wite space] 
+
+Verilog doesn't allow to identifier start with numeric character => to use numeric symbol in identifier, use escape iden
+tifier
+
+module \2and(.....
+
+Numbers in verilog
+
+Integer numbers are seperated as 
+Sized or unsized [unsized are 32 bits]
+Radix , octal, hex, binary, decimal 
+Radix and Hex digits [a,b,c...] case insensitive
+spaces are allowed between the size , radix and value
+
+Syntax : <size><radix><value>
+
+Real Numbers 
+
+Converts reals into integers by routing to the nearest int when assigning to int.
+<vlaue>.<value>
+<mantissa>E<exponent>
+Real numbers may be specified in either decimal or scientific notation. 
+
+Signed and Unsigned
+
+Unlike the C there are no int and unint 
+Negatives are used just puting minus sign before size for a constant
+21Dss_Buffer => [describtion] unsigned or signed possitive number
+-15'hdff      => [describtion] signed negatve number
+
+module signed;
+
+reg [3:0]a;
+
+initial begin	
+	a=14'h454;
+	$display ("Current number is =%h",a);
+	b=32'hddff;
+	$display ("Current number is =%h",a);
+	#15$finish;
+end
+endmodule
+
+MODULES
+
 
 3 
 Assign [w2w]
-Blocking [== ; elemento cascade nerov ancnel vortegh elementnery the scheme decides== self timed ]
-
+Blocking [== ; elemento cascade nerov ancnel vortegh elementnery the scheme decides== self timed]
 Non-blocking [<= ; clk tree the event occurs at the same time in dif peaces- the event decides]
 Akntartoren => sxal ardyunq 
 
