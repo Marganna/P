@@ -1,0 +1,62 @@
+To utilize program => tclsh
+To execute => filename.tcl= tcl filename.sh=tclsh filename.tcl depending on a version tcl 8.6 or tclsh.86.exe.
+Interpreter knows that tclsh = start interpreter, tcl version which automatically loads extention [in oop=extention 
+method added to an object, other it's copied.] for GUI. 
+Tclsh is a simple command line interactive interpreter= program which directly executes doesn't require them  previewously
+have been compiled in machien language.
+info commands => all commands
+
+set==to substitue a value to a variable by variable value. The result of any command may be used as an argument to any other 
+command.
+In tcl there is no operator or command for trying concat [union of strings] which makes more interactive scripting, allows
+to use more cumbersom predictable [ e.g. spaces in filenames does not cause difficulties]. Unlike the UNIX command shell 
+does not replace any string unless explicitly directed to do so [one of the pointors of interactivity, makes predictable
+that an empety lines also do not caus difficulties]. 
+Command could be used as argument to any other command. There is nor operator or command for string concatenation as the 
+language concats directly. 
+
+Evaaluates text strings as an expression =>=> set 
+
+%set sum [expr 1+2+3] // Curly baraces make substitution faster as every variable has it's substitusion.With curly braces variable substitution is delayed untill call time [dynamic scoping]. 
+%
+%puts "sum of the numbers"
+
+%set x 1
+%set sum [expr{$x+1+3}] //
+
+$x is not substituted and expression is presaved, Puts $sum is substitutes for $x and expression is evaluated.Without 
+braces substitution occurs at the definition site [lexical scoping.The basic construct [the command] and a set of somple
+substitution rules, courly brace characters around them which suppresses all substitutions inside except backslashes.
+
+Double-Quoted words 
+ == 3 types of substitution accurs [once in single left to right scan through the words]
+1. Command substitution => replaces square braces with the evaluating the script contained inside.
+2. Variable substitution => replaces the $ by the name of a variable with the content of vat "$dd" replaced the value
+"dd" with braces not to {} to delimit what is and isn't the variable name in otherwise ambigous cases.
+3. Backslash substitution, substitude \+char. 8.5 any words may prefixed by {*} to cause that word to be split apart into 
+it's construct sub-words in a purpose to build the command invocation.[[Unlike the UNIX command shell 
+does not replace any string unless explicitly directed to do so [one of the pointors of interactivity, makes predictable
+that an empety lines also do not caus difficulties]. 
+Command could be used as argument to any other command. There is nor operator or command for string concatenation as the 
+language concats directly.]]
+
+Special place in the library allows and can be placed and replaced if so desired. Most of tcl especially in the standart
+library are variadic and the proc [constructor for scriped command proc.deres] allows one to define default values for
+unspecified arguments and a catch all arguments to allow the code to process arbitary numbers of arguments.
+
+Tcl is not statically typed each var may contain int, float, lists, commands name [interactive] dictionalry...
+Variables are reinterprated as other types of demand as values and operations that appeat to change them, actually just returns 
+new value... immutable cannot be modified after it is created as values or immutable  [subjects to syntactic constraints].
+
+For shortcut fo initializing the control variable condition [ as immutable] and additional "next" iterations statement [command
+executed after executing the body]
+
+Looping
+
+Looping commands can be additionally controlled by these commands
+Break =>    interrupts the body execution and returns from the looping command.
+Continue => interrupts the body execution but the control is still given back to the looping command.
+	for while => loop again 
+	foreach => next itteration
+Return =>   interrupts execution of the current body independent of the dipness of the procedure boundary and returns the given 
+to the calllerrrr.
