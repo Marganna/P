@@ -17,12 +17,12 @@ language concats directly.
 
 Evaaluates text strings as an expression =>=> set 
 
-%set sum [expr 1+2+3] // Curly baraces make substitution faster as every variable has it's substitusion.With curly braces variable substitution is delayed untill call time [dynamic scoping]. 
-%
-%puts "sum of the numbers"
-
-%set x 1
-%set sum [expr{$x+1+3}] //
+	%set sum [expr 1+2+3] # Curly baraces make substitution faster as every variable has it's substitusion.With curly braces variable substitution is delayed untill call time [dynamic scoping]. 
+	%
+	%puts "sum of the numbers"
+	%
+	%set x 1
+	%set sum [expr{$x+1+3}] 
 
 $x is not substituted and expression is presaved, Puts $sum is substitutes for $x and expression is evaluated.Without 
 braces substitution occurs at the definition site [lexical scoping.The basic construct [the command] and a set of somple
@@ -59,4 +59,87 @@ Continue => interrupts the body execution but the control is still given back to
 	for while => loop again 
 	foreach => next itteration
 Return =>   interrupts execution of the current body independent of the dipness of the procedure boundary and returns the given 
-to the calllerrrr.
+to the calllerrrr
+
+There's no distinction between commands [in other languages known as 'functions'] ans syntax. No received words[like if and while]
+TCL interpreter starts up there is a list of known commands which interpretter uses to parse a line. TCL commands that obey the same
+syntax roules as all tcl commands and those are created by programmer with the proc command which is able to create new command.
+This happens this way. As the proc is evaluated, it creates a new command name which makes argumets with a given name. As the 
+procedure called, it returns the code contained in body.Arguments == list of arguments which will be passed to name. Name is 
+invoked, local variables with these names will be created and the values passed to name are copied to the local variables. 
+Value which body of a proc is able to be defined with return command [returns its argument to the callin program]. In case of
+absentance of return,  => the body will return the caller when last command executed. The return value of procedure==the return
+value of the last cmmand.
+
+	% proc sub {arg args} {
+	%	set x [expr {$arg- $args}];
+	%	return $x
+	% }
+	% puts "The sub is: [name 6 6]\n\n"
+	%
+	% proc for {i j k} {
+	%	puts "fo
+	%	puts "Arguments: $a\n$b\n$c\n" 
+	% }
+	% for {set i 0} {$i < 10} {incr i}
+
+So new command <<sub>> takes arg and args,runs the body. <<arg>> & <<args>> == list of arguments which would be passed to <<sub>>
+and as <<sub>> envoked local variables are created, will be passed to <<sub>> copied to local variables [variables which are created
+ouside the function and are accesssed [==used] on any function in the program. Are declared inside the function are able to be used only 
+inside the function, permited having the same variable with the same name inside different functions].
+
+A tcl evaluates variables by the scope of proc, namespaces, and at the topmost level, the global scope => the scope in which a variable
+will be evaluated is able to be changed with <<global>>[which will allow a variable in a local scope [inside the proc] to refer to the
+global variable[variable with golbal scoe => is visible & accessible everywhere in the program unless it's shadowed] of that name & 
+<<upvar>>[similar ro global - tights thevariable to the current scope to the variable in the diff. scope.] commands.
+Variables are encounterable through the others' tcl code wich is the part of the namespace system*.
+Variables which are not used anymore, s.t. go "out of scope" at the end of procedure, are automatically cleaned up, for which tcl uses 
+<<reference counting>>, and are possible remove explictly using <<unset>> command.
+
+upvar ?level?otherVarN ?currentVarN?
+
+Makes myVarN th and otherVarN the reference each other at the declared level relative to the current proc. . Levels could be mentioned 
+using numbers[=>many levels up the stack from the current level]] or # [references that may levels down from the golbal scope].
+
+List is just a collection of stuff. Even the set commands in tcl are just lists. The first list entery is the name of proc, arguments
+of proc - subsequent members of list. An idividual list member is accessed with <<lindex>> command.
+
+	% set listName {{member1}{member2}}
+	% set listName [split "member1.member2] #splits string into the list.If there are more characters to split=>each will used individually.
+	% set listName [list "member1""member2"]
+Item in list is iterated through using the foreach command, which makes avilable a variable from multible lists
+	
+	%foreach a $listA b $listB {...} 
+cool
+
+To add and delet list members.
+
+	% concat ?arg0?arg1?argN?  # all args in a single list, where arg is and individual element or another list.
+	% lapend listName ?args?   # appends to the list as individual element.
+	% linsert listName index ?args? # returns new list with new elements, but, before the mentioned element index. Each of them seperate elements.
+	% lreplace listName fist last ?arg...argN? # returns new list with N element with replaced given arguments.inequal lists => lappended.
+	% lset varName index newValue # is used to set elements of a list directly instead of lreplace.
+
+Lists are good data structure for arbitrary number of things [array inecis are accessble to index randomly, lists - find n-th one through the pattern of previouse 
+indices.]  
+
+	% lsearch list pattern # searches list that matches pattern
+	% lsort list # returns a new list[instead of sorting the list in place] in the stored order, by default, alphabetic order.
+	% lrange list first last # returns a list composed of the firsth through the last entries in the list.If  first is > last => empety list is returned, else if grater than the number of elements => ends.
+
+Lsearch uses "globbing"[used in Unix shell]  method of finding a match.  
+	
+	*  => matches any char
+	?  => matches one occurrence of any char
+	\X => <<\>> escapes any special char
+	[...] => match any occurrance of any char with the brackets [could be matched using the range inside the braces].
+<<glob>> command => glob pattern matching which returns a list of the matching files.
+
+Tcl commands hav subcommands. E.g. for <<string>> command the first argument is treated as a subcommand,also the following ones:
+
+	% string lenth strin 			# returns the length of string
+	% string index strin  index      	# returns index-th char from string
+	% string range string first last 	# returns strinc created with chars from firs to last
+
+
+
