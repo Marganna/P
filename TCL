@@ -135,11 +135,63 @@ Lsearch uses "globbing"[used in Unix shell]  method of finding a match.
 	[...] => match any occurrance of any char with the brackets [could be matched using the range inside the braces].
 <<glob>> command => glob pattern matching which returns a list of the matching files.
 
-Tcl commands hav subcommands. E.g. for <<string>> command the first argument is treated as a subcommand,also the following ones:
+Tcl commands have subcommands. E.g. for <<string>> command the first argument is treated as a subcommand,also the following ones:
 
 	% string lenth strin 			# returns the length of string
 	% string index strin  index      	# returns index-th char from string
 	% string range string first last 	# returns strinc created with chars from firs to last
 
+6 string subcommands which make pattern and string matching, works slower than regexp and less powerfull than regexp
 
+	% string compare string1 string2	# -1 if string less, 1 if grater than 0 if equal done alphabetically, not numerically
+	% string first string1 strin2		# returns the index of character in string 1 if [exists in string2] which starts the first match 
+							to the string 2. -1 if no match
+	% string last string1 string2		# returns the index of the character in string1 that starts the first match to string2 or -1 if no 
+	% string wordend string index		# returns index of the character after last one in the word which contains the given index'th character
+						  character of string. where the word is set of chars, underscores... 
+	% string wordstart string index		# returns the index of the first character in the word that contains the index'th character of string.
+	% string match pattern string		# returns 1 if the pattern matches string. pattern == glob style pattern
 
+String modification
+
+	% string follower string		# returns string with all the letters converted from upper to lower case
+	% string toupper string			# all letters converted from lower to upper case 
+	% string trim string ?trimchars?	# returns string with all occurrences of given trimchars removed from both sides which are 
+						  whitespaces[tabs, newlines, spaces] by default 
+	% string trimleft string ?trimchars?	# with all accurances of given trimchars removed from the left.
+	% string trimleft string ?trimchars?
+	% format "formatstring" ?arg1...argn?	# returns the string formated in the same manner as the ANSI sprintf procedure. "formatstring"
+						  describtion of the formating. contains of literal words, backslash sequences, and % files [strings
+						  which start % and end 
+					 	s --- Data == string
+						d --- Data == decimal integer
+						x --- Data == hexidecimal integer
+						o --- Data == octal
+						f --- Data is floating point number
+					
+						- align data lef
+						+ align data right
+
+Regular [rational] expressions - string operations, sequence of characters that define a search pattern which is used by string
+search algorithms for find or find and replace operations on string. [Stephen Cloe Kleene]
+Searches "string" for the regular expression "ex" if parameter "var" is given, then matched substring is copied to "var". 
+
+	 
+	% regexp ?switches? ex string ? var? submatch1...submatchn? // left to right
+	% regsub ?switches? ex string replace name // which searches the string for the substrings in the string and replaces with replace.
+the result copied into name.
+
+^ == matches the begining of a string
+$ == matches end of the string
+* == any single char
++ == any count,at least previous char
+[] == any char of a set of chars
+[^ ] == any char which is not a number of the chars the ^
+() == groups a set of chars in replace
+
+Regular exoressions are simular to globing but diff is the way that matched chars are handled, matches any quantity any character.
+Regexp parsing includes a method to select any chat not in a set, will match any char, not in the set of chars matched in the variable.
+As the match is found enclosed parentheses.
+Regsub copies the content to new variable substituting the matched chars.
+The argument, regsub, regexp are processed by the substitution pass => expression should be enclosed in braces not to 
+process any special one.
