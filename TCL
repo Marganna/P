@@ -195,3 +195,52 @@ As the match is found enclosed parentheses.
 Regsub copies the content to new variable substituting the matched chars.
 The argument, regsub, regexp are processed by the substitution pass => expression should be enclosed in braces not to 
 process any special one.
+
+Looping associative array non specifying elements => array name & array get commands both selects nececarry elements
+in a given pattern. Arrays are collections of variables [not values] which doesn't have a value => instead giving the value
+input the [name] via upvarr cmmand, also for changes original array to a loal variable.
+
+Disadvantages - cannot passed directly to a procedure as a value instead use array get & array set - converts to a value
+and back, upvar - creates alias of the array.
+- multidimentional arrays  [ index consists of more than 2 parts] emulated with one idmentional
+ array set array (key) 45.
+-arrays cannot be included in other data structures s.t. lists, sent over communications channel, non convertin into stringvalue.
+[dict] command, dictionaries are pure [are pushed to procedure just as a list of string] values, are provided as efficient 
+access to key value pairs ,like Tcl lists just they act like mapping for key values not an ordered sequence.
+dictionaries are able to be nested so the value for particular key consists of another dictionary allows to build complicated 
+data structure s.t. hierarchical databases. also could be combined dictionaries with other tcl data structures , building lists
+of dictionaries that themselves contain lists.
+
+File Access
+
+Read [gets and puts, [read](to load an entire file then parse into lines with [split]])/Write files on disk. comunicates over sockets
+and pipes. also with virtual file system to use them stored in memory not on disk.Uniform interface which diff resources, do not need 
+details.
+
+% open filename? access? permition?
+
+access modes
+	- r  open the file reading which already exists.
+	- r+ read/write. file exists.
+	- w  writing. ok if doesn't exists, if exists => set length to sero
+	- w+ read/write. ok if file doesn't exists, if exists => set length to zero
+	- a open for writing. must exist set current location immutable
+	- a+ open for writhing. creates new file sets current location immutable
+
+Permition - integer . the default is rw-rw-rw- (0666)   
+
+% close fiileID		#close opened file with open, flushes any remaining output.
+
+% gets fileID ?varname? #reads a line of input from fileID discarts the terminating newline.
+varname == argument from fileID, discards the terminating newline. returns number of characters read [=1 if EOF[end of the file] occurs] places
+the line of input in varname
+varname is not specified => returns line of input. 
+Empety string returned if
+- balnk line file.
+-  current location is at EOF.
+
+% puts ?-nonewline ?fileID? string	# writes the chars in string referenced by fileID which is not
+	- the value returned by previous call to open with write access
+	- stdout
+	- stderr
+
