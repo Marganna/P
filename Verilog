@@ -291,10 +291,122 @@ endmodule
 
 MODULES
 
-
+Modules are the build blocks of verilog design
+Creating design hierarchy by instaining modules in other modules then
+An instance of a module is a use of the module in anothe higher-level module
 3 
 Assign [w2w]
 Blocking [== ; elemento cascade nerov ancnel vortegh elementnery the scheme decides== self timed]
 Non-blocking [<= ; clk tree the event occurs at the same time in dif peaces- the event decides]
 Akntartoren => sxal ardyunq 
 
+
+PORTS
+
+Allow communication between a module and its enviroment
+All but the top level in a hierarchy have ports
+Ports can be associated by order or by name.
+
+Ports decared to be input or output. 
+
+//Decleration syntax
+
+input [range_smth:range_sm];
+output [range_smth:range_sm];
+inout [range_smth:range_sm];
+
+input clk; 
+input [31:0] data; // 32 bit data input bus
+output [7:0] count;// 8 bit counter output
+inout data_sm; // sm - directional data bus
+
+module ab(
+a,
+b,
+ci, //carry input
+sum, //summ output
+co //carry output
+);
+//input decleration
+input a;
+inputb;
+inputci;
+//outputs
+wire a;
+wire b;
+wire ci;
+wire sum;
+wire co;
+//code
+assign {co,sum} = a+b+ci;
+
+endmodule //ab
+
+MODULES CONNECTED BY PORT ORDER [implicit]
+
+Disadvantage = > problem in debuging as any new port added or deleted, causing compiler error.
+
+module imlicit (
+result, //implicit output
+carry, //carry out of implicit
+r1,
+r2,
+ci,
+);
+
+input [3:0]r1;
+input [3:0]r2;
+input ci;
+
+output [3:0] result;
+output carry;
+
+//Port wires
+
+wire [3:0]r1;
+wire [3:0] r2;
+wire ci;
+wire [3:0] result;
+wire carry;
+
+//internal variables
+
+wire c1;
+wire c2;
+wire c3;
+
+//Code
+
+ab n0 (
+r1[0],
+r2[0],
+ci,
+result[0],
+c1
+);
+
+ab n1 (
+r1 [1],
+r2 [1],
+c1 ,
+result[1],
+c2
+);
+
+ab n3 (
+r1 [2],
+r2 [2],
+c2 ,
+result[2].
+c3,
+);
+
+ab n3 (
+r1[3],
+r2[3],
+c3,
+result[3],
+carry
+);
+
+endmodule //
